@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-# Create your views here.
+
 def inicio(request):
-    return HttpResponse("Olá, Evf Pagamentos!")
+    contexto = {"nome_clube": "Evf Pagamentos"}
+    return render(request, "alunos/inicio.html", contexto)
