@@ -16,3 +16,19 @@ main {
     margin: 2rem auto;
     padding: 0 1rem;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #e8edf5;
+}
