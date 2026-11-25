@@ -1,10 +1,32 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block titulo %}Início - Evf Pagamentos{% endblock %}
 
 {% block conteudo %}
-    <h2>Olá, {{ nome_clube }}!</h2>
-    <p>Bem-vindo ao sistema do clube.</p>
+    <section class="destaque">
+        <img src="{% static 'img/evf-logo.png' %}" alt="Escudo da EVF">
+        <div>
+            <h2>Olá, <span>{{ nome_clube }}</span>!</h2>
+            <p>Bem-vindo ao sistema do clube. Gerencie alunos, treinos e pagamentos em um só lugar.</p>
+        </div>
+    </section>
 
-    <p><a href="{% url 'lista_alunos' %}">Ver lista de alunos</a></p>
+    <div class="atalhos">
+        <a class="atalho" href="{% url 'lista_alunos' %}">
+            <div class="atalho-icone">🏐</div>
+            <h3>Alunos</h3>
+            <p>Veja a lista de alunos cadastrados.</p>
+        </a>
+        <a class="atalho" href="{% url 'cadastrar_aluno' %}">
+            <div class="atalho-icone">➕</div>
+            <h3>Novo aluno</h3>
+            <p>Cadastre um novo aluno no clube.</p>
+        </a>
+        <a class="atalho" href="{% url 'admin:index' %}">
+            <div class="atalho-icone">⚙️</div>
+            <h3>Administração</h3>
+            <p>Acesse o painel do Django Admin.</p>
+        </a>
+    </div>
 {% endblock %}
