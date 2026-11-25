@@ -5,14 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block titulo %}Evf Pagamentos{% endblock %}</title>
+    <link rel="icon" href="{% static 'img/evf-logo.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Evf Pagamentos</h1>
+    {% with pagina=request.resolver_match.url_name %}
+    <header class="topo">
+        <div class="topo-conteudo">
+            <a class="marca" href="{% url 'inicio' %}">
+                <img src="{% static 'img/evf-logo.png' %}" alt="Escudo da EVF">
+                <span class="marca-nome">EVF <span>Pagamentos</span></span>
+            </a>
+            <nav class="menu">
+                <a href="{% url 'inicio' %}" class="{% if pagina == 'inicio' %}ativo{% endif %}">Início</a>
+                <a href="{% url 'lista_alunos' %}" class="{% if pagina == 'lista_alunos' or pagina == 'cadastrar_aluno' %}ativo{% endif %}">Alunos</a>
+                <a href="{% url 'admin:index' %}">Admin</a>
+            </nav>
+        </div>
     </header>
-    <main>
+    {% endwith %}
+
+    <main class="conteudo">
         {% block conteudo %}{% endblock %}
     </main>
+
+    <footer class="rodape">
+        EVF Vôlei · desde 2013
+    </footer>
 </body>
 </html>

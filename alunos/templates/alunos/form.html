@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block titulo %}Novo aluno - Evf Pagamentos{% endblock %}
+
+{% block conteudo %}
+    <div class="pagina-estreita">
+        <div class="cabecalho-pagina">
+            <div>
+                <h2>Novo aluno</h2>
+                <p>Preencha os dados para cadastrar um aluno no clube.</p>
+            </div>
+        </div>
+
+        <div class="cartao formulario">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="acoes">
+                    <button type="submit" class="botao botao-roxo">Salvar</button>
+                    <a href="{% url 'lista_alunos' %}" class="botao botao-contorno">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

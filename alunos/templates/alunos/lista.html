@@ -3,32 +3,46 @@
 {% block titulo %}Alunos - Evf Pagamentos{% endblock %}
 
 {% block conteudo %}
-    <h2>Alunos</h2>
+    <div class="cabecalho-pagina">
+        <div>
+            <h2>Alunos</h2>
+            <p>{{ alunos|length }} aluno{{ alunos|length|pluralize }} cadastrado{{ alunos|length|pluralize }}</p>
+        </div>
+        <a class="botao botao-dourado" href="{% url 'cadastrar_aluno' %}">+ Novo aluno</a>
+    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>E-mail</th>
-                <th>Ativo</th>
-                <th>Entrada</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for aluno in alunos %}
-            <tr>
-                <td>{{ aluno.nome_completo }}</td>
-                <td>{{ aluno.telefone }}</td>
-                <td>{{ aluno.email }}</td>
-                <td>{{ aluno.ativo|yesno:"Sim,Não" }}</td>
-                <td>{{ aluno.data_entrada|date:"d/m/Y" }}</td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="5">Nenhum aluno cadastrado.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="tabela-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>E-mail</th>
+                    <th>Situação</th>
+                    <th>Entrada</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aluno in alunos %}
+                <tr>
+                    <td><strong>{{ aluno.nome_completo }}</strong></td>
+                    <td>{{ aluno.telefone|default:"—" }}</td>
+                    <td>{{ aluno.email|default:"—" }}</td>
+                    <td>
+                        {% if aluno.ativo %}
+                            <span class="etiqueta etiqueta-ativo">Ativo</span>
+                        {% else %}
+                            <span class="etiqueta etiqueta-inativo">Inativo</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ aluno.data_entrada|date:"d/m/Y" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="vazio">Nenhum aluno cadastrado ainda.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
